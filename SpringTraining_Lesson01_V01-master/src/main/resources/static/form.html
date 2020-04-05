@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+</head>
+<body>
+    <p th:text="'従業員入力画面'" />    
+    
+    <form action="#" th:action="@{/form}" th:object="${command}" method="post">
+    		<p>名前: <input type="text" th:field="*{textField}" /></p>
+    		
+    		<p>年齢: <input type="text" th:field="*{textField}" /></p>
+    		
+    		<p>部署:
+    		<select th:field="*{dropdownSelectedValue}">
+    			<option value="">Sales</option>
+    			<option value="">HR</option>
+    			<option value="">IT</option>
+    			<option th:each="dropdownValue: ${singleSelectAllValues}"
+    					th:value="${dropdownValue}"
+    					th:text="${dropdownValue}" >
+    			</option>
+    		</select>    
+    		</p>
+    		
+    		<p>性別:
+    				<input type="radio" th:field="*{radioButtonSelectedValue}" th:value="${radioValue}" />
+    				<label th:for="${#ids.prev('radioButtonSelectedValue')}" th:text="${radioValue}">男性</label>
+    				<input type="radio" th:field="*{radioButtonSelectedValue}" th:value="${radioValue}" />
+    				<label th:for="${#ids.prev('radioButtonSelectedValue')}" th:text="${radioValue}">女性</label>
+    			
+    		</p>
+    		
+    		<p>入社年月日: <input type="text" th:field="*{textField}" th:value="*{YYYY/MM/DD}" /></p>
+    		
+    		<p>退社年月日: <input type="text" th:field="*{textField}" th:value="*{YYYY/MM/DD}" /></p>
+    		
+    		<p><input type="submit" value="送信ボタン" /> </p>
+   	
+	  
+    </form>
+</body>
+</html>
